@@ -27,6 +27,12 @@ axon:
     client-id: customer-service
     default-topic: axon.events
 
+    producer:
+      transaction-id-prefix: customer-service-producer
+
+    publisher:
+      enabled: false  # Disable Kafka publisher to prevent republishing
+
     consumer:
       event-processor-mode: subscribing
 

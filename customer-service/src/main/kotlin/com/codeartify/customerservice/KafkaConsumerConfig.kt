@@ -1,9 +1,11 @@
 package com.codeartify.customerservice
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.axonframework.config.EventProcessingConfigurer
 import org.axonframework.eventhandling.EventBus
 import org.axonframework.eventhandling.GenericEventMessage
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,6 +19,11 @@ import org.springframework.stereotype.Component
 @Configuration
 @EnableKafka
 class KafkaConsumerConfig {
+
+    @Autowired
+    fun configureEventProcessing(eventProcessingConfigurer: EventProcessingConfigurer) {
+        eventProcessingConfigurer.registerSubscribingEventProcessor("customer-order-processing")
+    }
 
     @Bean
     fun consumerFactory(
