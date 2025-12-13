@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/orders
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+axon:
+  axonserver:
+    enabled: false   # no Axon Server
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    client-id: order-service
+    default-topic: axon.events
+
+    # publish events from local event store to Kafka
+    producer:
+      event-processor-mode: subscribing
+
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson

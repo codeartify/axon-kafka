@@ -1,0 +1,8 @@
+### Register customer
+POST http://localhost:8082/customers/register
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Oliver Zihler"
+}
