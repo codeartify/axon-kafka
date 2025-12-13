@@ -16,6 +16,10 @@ class OrderAggregate() {
 
     @CommandHandler
     constructor(cmd: PlaceOrderCommand) : this() {
+        require(cmd.orderId.isNotBlank()) { "Order ID must not be blank" }
+        require(cmd.customerId.isNotBlank()) { "Customer ID must not be blank" }
+        require(cmd.amount.toDouble() > 0) { "Amount must be greater than zero" }
+
         apply(OrderPlacedEvent(orderId = cmd.orderId, customerId = cmd.customerId, amount = cmd.amount))
     }
 

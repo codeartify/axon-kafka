@@ -1,9 +1,13 @@
-# Event-Sourced Microservices with Axon's ES Domain-Driven Design Domain Model and Kafka as Event Bus
+# Axon Kafka Demo
+
+Event-driven microservices demo using Axon Framework with Kafka and PostgreSQL.
+
 ## Prerequisites
 
 - Java 21
 - Docker & Docker Compose
 - Maven
+- IntelliJ IDEA (recommended for HTTP requests)
 
 ## Running the Application
 
@@ -38,7 +42,7 @@ The services run on:
 
 ### 3. Test the Application
 
-#### Register a Customer
+#### Step 1: Register a Customer
 
 Use `requests/customer.http`:
 
@@ -51,55 +55,74 @@ Content-Type: application/json
 }
 ```
 
-#### Get the Customer ID
+The response will include the customer ID, which is automatically stored in the HTTP client environment (`{{customerId}}`).
 
-Connect to the PostgreSQL database and retrieve the aggregate ID from the aggregate_identifier column of the domain_event_entry for CustomerRegisteredEvent:
-
-```bash
-psql -h localhost -p 5433 -U test -d customers
+Response:
+```json
+{
+  "id": "e6686671-7de9-45fb-8a02-b449db20dc6e",
+  "name": "Oliver Zihler",
+  "orders": []
+}
 ```
 
-Password: `test`
+#### Step 2: Place an Order
 
-```sql
-select * from domain_event_entry;
-```
-```sql
-global_index |           event_identifier           | meta_data | payload | payload_revision |                      payload_type                      |        time_stamp        |         aggregate_identifier         | sequence_number |       type        
---------------+--------------------------------------+-----------+---------+------------------+--------------------------------------------------------+--------------------------+--------------------------------------+-----------------+-------------------
-            1 | a7dcdda5-e31c-4d1c-aaa1-226143031a32 |     16472 |   16473 |                  | com.codeartify.customerservice.CustomerRegisteredEvent | 2025-12-13T13:15:46.996Z | a37632b5-b6f8-401b-997a-457f28f7de3d |               0 | CustomerAggregate
-
-```
-
-
-Copy the `aggregate_identifier` value (`a37632b5-b6f8-401b-997a-457f28f7de3d`).
-
-#### Place an Order
-
-Use `requests/orders.http` with the customer ID:
+Use `requests/orders.http` - the `{{customerId}}` is automatically used from the previous request:
 
 ```http
-POST http://localhost:8081/orders?customerId=<PASTE-CUSTOMER-ID>&amount=12.5
+POST http://localhost:8081/orders?customerId={{customerId}}&amount=12.5
 ```
 
-The order event will be published to Kafka and consumed by the Customer Service.
-There will be a OrderPlacedEvent (from Order Service) and an OrderAddedEvent (from Customer Service)
+The order event will be:
+1. Published to Kafka by Order Service (`OrderPlacedEvent`)
+2. Consumed by Customer Service
+3. Processed as a command to add the order to the customer (`AddOrderCommand`)
+4. Stored as an event (`OrderAddedEvent`)
 
-```sql
-customers=# select * from domain_event_entry;
-```
-```sql
- global_index |           event_identifier           | meta_data | payload | payload_revision |                      payload_type                      |        time_stamp        |         aggregate_identifier         | sequence_number |       type        
---------------+--------------------------------------+-----------+---------+------------------+--------------------------------------------------------+--------------------------+--------------------------------------+-----------------+-------------------
-            1 | aa77946d-4cd8-4fe4-a70c-88c015fc3afe |     16472 |   16473 |                  | com.codeartify.customerservice.CustomerRegisteredEvent | 2025-12-13T13:53:58.583Z | 8f02b67e-7d56-4991-96d6-b145928efff6 |               0 | CustomerAggregate
-            2 | c9f67462-ec22-4106-a888-7e19f7af769a |     16474 |   16475 |                  | com.codeartify.customerservice.OrderPlacedEvent        | 2025-12-13T13:54:49.082Z | c9f67462-ec22-4106-a888-7e19f7af769a |               0 | 
-            3 | a24ea1cc-befe-478b-89dc-fa5205f4469c |     16476 |   16477 |                  | com.codeartify.customerservice.OrderAddedEvent         | 2025-12-13T13:54:49.300Z | 8f02b67e-7d56-4991-96d6-b145928efff6 |               1 | CustomerAggregate
-(3 rows)
+#### Step 3: Verify the Customer Data
 
+Use the GET endpoint in `requests/orders.http`:
+
+```http
+GET http://localhost:8082/customers/{{customerId}}
 ```
+
+Response:
+```json
+{
+  "id": "e6686671-7de9-45fb-8a02-b449db20dc6e",
+  "name": "Oliver Zihler",
+  "orders": [
+    {
+      "id": "4673006b-e505-493e-b28f-243dae359180",
+      "amount": 12.5
+    }
+  ]
+}
+```
+
 ## Architecture
 
+### Services
+
 - **Order Service**: Creates orders and publishes `OrderPlacedEvent` to Kafka
-- **Customer Service**: Consumes order events from Kafka and updates customer records
+- **Customer Service**:
+  - Manages customer aggregates using Event Sourcing
+  - Consumes order events from Kafka
+  - Maintains SQL projections in PostgreSQL
+  - Provides REST API with subscription queries for eventual consistency
+
+### Infrastructure
+
 - **Kafka**: Event bus for inter-service communication
-- **PostgreSQL**: Event store and projection databases
+- **PostgreSQL**:
+  - Event store (domain_event_entry table)
+  - SQL projections (customers and orders tables)
+
+### Key Patterns
+
+- **Event Sourcing**: Customer aggregate state is reconstructed from events
+- **CQRS**: Separate write model (aggregates) and read model (projections)
+- **Subscription Queries**: REST endpoints wait for projections to be updated before returning
+- **Event-Driven Architecture**: Services communicate via Kafka events

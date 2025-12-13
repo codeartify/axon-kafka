@@ -9,10 +9,25 @@ import org.springframework.stereotype.Component
 @Component
 @ProcessingGroup("customer-order-processing")
 class CustomerOrderEventHandler(
-    private val commandGateway: CommandGateway
+    private val commandGateway: CommandGateway,
+    private val customerRepository: CustomerRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
+
+    @EventHandler
+    fun on(evt: CustomerRegisteredEvent) {
+        log.info("Creating customer projection for: {}", evt.customerId)
+        customerRepository.save(CustomerEntity(evt.customerId, evt.name))
+    }
+
+    @EventHandler
+    fun on(evt: OrderAddedEvent) {
+        log.info("Adding order {} to customer {}", evt.orderId, evt.customerId)
+        val customer = customerRepository.findById(evt.customerId).orElseThrow()
+        customer.orders.add(OrderEntity(evt.orderId, evt.amount, customer))
+        customerRepository.save(customer)
+    }
 
     @EventHandler
     fun on(evt: OrderPlacedEvent) {
