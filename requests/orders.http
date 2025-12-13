@@ -1,0 +1,3 @@
+POST http://localhost:8081/orders?customerId={{customerId}}&amount=10.50
+Content-Type: application/json
+Accept: application/json

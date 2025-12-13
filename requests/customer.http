@@ -6,3 +6,7 @@ Accept: application/json
 {
   "name": "Oliver Zihler"
 }
+> {%
+    const response = JSON.parse(response.body);
+    client.global.set("customerId", response.id);
+%}
