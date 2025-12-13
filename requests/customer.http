@@ -8,5 +8,5 @@ Accept: application/json
 }
 > {%
     const response = JSON.parse(response.body);
-    client.global.set("customerId", response.id);
+  //  client.global.set("customerId", response.id);
 %}

@@ -1,3 +1,77 @@
+POST http://localhost:8081/orders?customerId=e6686671-7de9-45fb-8a02-b449db20dc6e&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T141112.200.json
+
+###
+
+POST http://localhost:8082/customers/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 29
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "name": "Oliver Zihler"
+}
+
+<> 2025-12-13T141052.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T140649.200.json
+
+###
+
+POST http://localhost:8082/customers/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 29
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "name": "Oliver Zihler"
+}
+
+<> 2025-12-13T140644.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T140553.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T130432.200.json
+
+###
+
 POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
 Content-Type: application/json
 Accept: application/json

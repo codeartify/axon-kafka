@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.8</version>
+        <version>3.3.5</version>
         <relativePath/>
     </parent>
 
@@ -24,13 +24,13 @@
     </modules>
 
     <properties>
-        <java.version>24</java.version>
-        <maven.compiler.source>24</maven.compiler.source>
-        <maven.compiler.target>24</maven.compiler.target>
-        <kotlin.version>2.2.21</kotlin.version>
-        <kotlin.compiler.jvmTarget>24</kotlin.compiler.jvmTarget>
-        <axon.version>4.12.2</axon.version>
-        <axon-kafka.version>4.12.0</axon-kafka.version>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <kotlin.version>2.0.21</kotlin.version>
+        <kotlin.compiler.jvmTarget>21</kotlin.compiler.jvmTarget>
+        <axon.version>4.10.3</axon.version>
+        <axon-kafka.version>4.10.0</axon-kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -53,7 +53,7 @@
                     <artifactId>kotlin-maven-plugin</artifactId>
                     <version>${kotlin.version}</version>
                     <configuration>
-                        <jvmTarget>24</jvmTarget>
+                        <jvmTarget>21</jvmTarget>
                         <args>
                             <arg>-Xjsr305=strict</arg>
                             <arg>-Xannotation-default-target=param-property</arg>

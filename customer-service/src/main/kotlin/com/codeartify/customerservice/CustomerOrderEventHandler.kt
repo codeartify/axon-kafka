@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
 @Component
-@ProcessingGroup("orders-from-kafka")
 class CustomerOrderEventHandler(
     private val commandGateway: CommandGateway
 ) {

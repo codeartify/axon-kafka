@@ -21,7 +21,7 @@ spring:
 
 axon:
   axonserver:
-    enabled: false   # no Axon Server
+    enabled: false
   kafka:
     bootstrap-servers: localhost:9092
     client-id: customer-service
@@ -29,18 +29,15 @@ axon:
 
     consumer:
       event-processor-mode: subscribing
-      group-id: customer-service-group
-
-    properties:
-      "[key.deserializer]": org.apache.kafka.common.serialization.StringDeserializer
-      "[value.deserializer]": org.apache.kafka.common.serialization.ByteArrayDeserializer
-      "[enable.auto.commit]": true
-      "[auto.commit.interval.ms]": 3000
-      "[auto.offset.reset]": earliest
 
   serializer:
     general: jackson
     events: jackson
     messages: jackson
+
+logging:
+  level:
+    org.axonframework: DEBUG
+    com.codeartify: DEBUG
 
 
