@@ -46,7 +46,7 @@ class CustomerController(
         return ResponseEntity.ok(CustomerResponse(
             id = customer.id,
             name = customer.name,
-            orders = customer.orders.map { OrderResponse(it.id, it.amount) }
+            orderIds = customer.orders.map { it.orderId }
         ))
     }
 }
@@ -58,10 +58,5 @@ data class RegisterCustomerRequest(
 data class CustomerResponse(
     val id: String,
     val name: String,
-    val orders: List<OrderResponse> = emptyList()
-)
-
-data class OrderResponse(
-    val id: String,
-    val amount: Double
+    val orderIds: List<String> = emptyList()
 )

@@ -19,7 +19,7 @@ class CustomerQueryHandler(
             .map { CustomerResponse(
                 id = it.id,
                 name = it.name,
-                orders = it.orders.map { order -> OrderResponse(order.id, order.amount) }
+                orderIds = it.orders.map { order -> order.orderId }
             )}
             .orElse(null)
     }
@@ -30,7 +30,7 @@ class CustomerQueryHandler(
         val response = CustomerResponse(
             id = customer.id,
             name = customer.name,
-            orders = emptyList()
+            orderIds = emptyList()
         )
         queryUpdateEmitter.emit(GetCustomerQuery::class.java, { it.customerId == evt.customerId }, response)
     }
@@ -41,7 +41,7 @@ class CustomerQueryHandler(
         val response = CustomerResponse(
             id = customer.id,
             name = customer.name,
-            orders = customer.orders.map { OrderResponse(it.id, it.amount) }
+            orderIds = customer.orders.map { it.orderId }
         )
         queryUpdateEmitter.emit(GetCustomerQuery::class.java, { it.customerId == evt.customerId }, response)
     }

@@ -25,7 +25,7 @@ class CustomerOrderEventHandler(
     fun on(evt: OrderAddedEvent) {
         log.info("Adding order {} to customer {}", evt.orderId, evt.customerId)
         val customer = customerRepository.findById(evt.customerId).orElseThrow()
-        customer.orders.add(OrderEntity(evt.orderId, evt.amount, customer))
+        customer.orders.add(OrderEntity(evt.orderId, customer))
         customerRepository.save(customer)
     }
 

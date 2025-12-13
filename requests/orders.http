@@ -1,6 +1,14 @@
 ### Place order
-POST http://localhost:8081/orders?customerId={{customerId}}&amount=15.5
+POST http://localhost:8081/orders?customerId={{customerId}}&amount=18.5
 Content-Type: application/json
+Accept: application/json
+
+> {%
+    client.global.set("orderId", response.body);
+%}
+
+### Get order details
+GET http://localhost:8081/orders/{{orderId}}
 Accept: application/json
 
 ### Get customer after order

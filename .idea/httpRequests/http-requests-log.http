@@ -1,3 +1,123 @@
+GET http://localhost:8081/orders/c62b5562-f3eb-4c6e-8067-a76a4a69f2f4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154838.200.json
+
+###
+
+GET http://localhost:8082/customers/686f237d-2672-40a5-b987-96b02cda42d9
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154829.200.json
+
+###
+
+GET http://localhost:8081/orders/c681d2c4-b21f-4f34-afe8-a4c7908f46f2
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154826.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=686f237d-2672-40a5-b987-96b02cda42d9&amount=18.5
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T154823.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=686f237d-2672-40a5-b987-96b02cda42d9&amount=15.5
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T154818.200.json
+
+###
+
+GET http://localhost:8082/customers/686f237d-2672-40a5-b987-96b02cda42d9
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154811.200.json
+
+###
+
+GET http://localhost:8081/orders/c62b5562-f3eb-4c6e-8067-a76a4a69f2f4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154804.200.json
+
+###
+
+GET http://localhost:8082/customers/686f237d-2672-40a5-b987-96b02cda42d9
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154802.200.json
+
+###
+
+GET http://localhost:8081/orders/c62b5562-f3eb-4c6e-8067-a76a4a69f2f4
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154759.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=686f237d-2672-40a5-b987-96b02cda42d9&amount=15.5
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T154755.200.json
+
+###
+
+GET http://localhost:8082/customers/686f237d-2672-40a5-b987-96b02cda42d9
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+<> 2025-12-13T154744.200.json
+
+###
+
+POST http://localhost:8082/customers/register
+Content-Type: application/json
+Accept: application/json
+Content-Length: 29
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+
+{
+  "name": "Oliver Zihler"
+}
+
+<> 2025-12-13T154742.200.json
+
+###
+
 GET http://localhost:8082/customers/7d8f88a5-e384-4728-aa7f-8ef63460ca9b
 Accept: application/json
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
@@ -207,6 +327,28 @@ Accept-Encoding: br, deflate, gzip, x-gzip
 content-length: 0
 
 <> 2025-12-13T130432.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T123843.200.json
+
+###
+
+POST http://localhost:8081/orders?customerId=58e64cd8-cdee-4a21-9cc0-f1c6ca53f3e7&amount=10.50
+Content-Type: application/json
+Accept: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.2.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+content-length: 0
+
+<> 2025-12-13T123602.200.json
 
 ###
 
