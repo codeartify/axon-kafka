@@ -83,7 +83,20 @@ POST http://localhost:8081/orders?customerId=<PASTE-CUSTOMER-ID>&amount=12.5
 ```
 
 The order event will be published to Kafka and consumed by the Customer Service.
+There will be a OrderPlacedEvent (from Order Service) and an OrderAddedEvent (from Customer Service)
 
+```sql
+customers=# select * from domain_event_entry;
+```
+```sql
+ global_index |           event_identifier           | meta_data | payload | payload_revision |                      payload_type                      |        time_stamp        |         aggregate_identifier         | sequence_number |       type        
+--------------+--------------------------------------+-----------+---------+------------------+--------------------------------------------------------+--------------------------+--------------------------------------+-----------------+-------------------
+            1 | aa77946d-4cd8-4fe4-a70c-88c015fc3afe |     16472 |   16473 |                  | com.codeartify.customerservice.CustomerRegisteredEvent | 2025-12-13T13:53:58.583Z | 8f02b67e-7d56-4991-96d6-b145928efff6 |               0 | CustomerAggregate
+            2 | c9f67462-ec22-4106-a888-7e19f7af769a |     16474 |   16475 |                  | com.codeartify.customerservice.OrderPlacedEvent        | 2025-12-13T13:54:49.082Z | c9f67462-ec22-4106-a888-7e19f7af769a |               0 | 
+            3 | a24ea1cc-befe-478b-89dc-fa5205f4469c |     16476 |   16477 |                  | com.codeartify.customerservice.OrderAddedEvent         | 2025-12-13T13:54:49.300Z | 8f02b67e-7d56-4991-96d6-b145928efff6 |               1 | CustomerAggregate
+(3 rows)
+
+```
 ## Architecture
 
 - **Order Service**: Creates orders and publishes `OrderPlacedEvent` to Kafka
