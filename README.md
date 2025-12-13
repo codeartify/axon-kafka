@@ -1,6 +1,32 @@
-# Axon Kafka Demo
+# Axon Kafka — Orders & Customers Demo
 
-Event-driven microservices demo using Axon Framework with Kafka and PostgreSQL.
+A multi-service event-driven architecture using Event-Sourced DDD Aggregates from the **Axon Framework** with **Kafka** for inter-service event-based communication and **PostgreSQL** for Axon Event Store and Read Model Projections.
+
+## Architecture Overview
+
+![Event Storming - Bounded Contexts](imgs/event-storming.png)
+
+The system is built around two independent bounded contexts:
+
+- **Order Bounded Context** (order-service) — Handles order placement and maintains order data
+- **Customer Bounded Context** (customer-service) — Manages customers and tracks orders they placed
+
+## Services
+
+- **order-service** — Handles order placement (port 8081)
+- **customer-service** — Manages customers (port 8082)
+- **Kafka** — Event streaming between services
+- **PostgreSQL** — Two databases: one for orders (port 5434), one for customers (port 5433)
+
+## Prerequisites
+
+- **Java 21**
+- **Docker** + **Docker Compose**
+- **Maven** (bundled via `mvnw`)
+
+---
+
+## Quick Start
 
 ## Prerequisites
 
