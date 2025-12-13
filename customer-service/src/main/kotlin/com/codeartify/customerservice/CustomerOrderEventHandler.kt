@@ -31,17 +31,11 @@ class CustomerOrderEventHandler(
 
     @EventHandler
     fun on(evt: OrderPlacedEvent) {
-        log.info("========================================")
-        log.info("Customer service received OrderPlacedEvent: {}", evt)
-        log.info("Order ID: {}, Customer ID: {}, Amount: {}", evt.orderId, evt.customerId, evt.amount)
-        log.info("========================================")
-
         try {
             commandGateway.sendAndWait<Any>(AddOrderCommand(evt.customerId, evt.orderId, evt.amount.toDouble()))
             log.info("Successfully processed order {} for customer {}", evt.orderId, evt.customerId)
         } catch (e: Exception) {
             log.error("Failed to add order {} for customer {}: {}", evt.orderId, evt.customerId, e.message)
-            // Don't rethrow - acknowledge the message to prevent infinite retry
         }
     }
 }

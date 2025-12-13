@@ -31,7 +31,7 @@ class KafkaConsumerConfig {
     ): ConsumerFactory<String, ByteArray> {
         val props = mapOf<String, Any>(
             "bootstrap.servers" to bootstrapServers,
-            "group.id" to "customer-service-group-v2",  // New group to start fresh
+            "group.id" to "customer-service-group-v2",
             "key.deserializer" to "org.apache.kafka.common.serialization.StringDeserializer",
             "value.deserializer" to "org.apache.kafka.common.serialization.ByteArrayDeserializer",
             "auto.offset.reset" to "latest",
@@ -63,16 +63,7 @@ class KafkaEventListener(
     fun listen(message: ByteArray) {
         try {
             log.info("Received raw Kafka message, size: {} bytes", message.size)
-
-            // Parse directly as OrderPlacedEvent
             val event = objectMapper.readValue(message, OrderPlacedEvent::class.java)
-
-            log.info("========================================")
-            log.info("Customer service received OrderPlacedEvent from Kafka: {}", event)
-            log.info("Order ID: {}, Customer ID: {}, Amount: {}", event.orderId, event.customerId, event.amount)
-            log.info("========================================")
-
-            // Publish to Axon event bus so handlers can process it
             eventBus.publish(GenericEventMessage.asEventMessage<OrderPlacedEvent>(event))
         } catch (e: Exception) {
             log.error("Failed to process Kafka message", e)
