@@ -1,0 +1,54 @@
+# === IntelliJ IDEA ===
+.idea/
+/.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# IntelliJ HTTP Client (keep your requests/*.http if you want; ignore auto-generated stuff)
+.httpRequests/
+.idea/httpRequests/
+
+# === Maven / Java build outputs ===
+**/target/
+*.class
+
+# Maven release / backup files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# === Gradle (in case any module adds it later) ===
+.gradle/
+**/build/
+
+# === Kotlin / Kapt / Kotlin incremental compilation ===
+**/.kotlin/
+**/kotlin-js-store/
+**/kapt.kotlin.generated/
+**/kapt/
+**/generated/
+
+# === Spring Boot runtime ===
+*.log
+logs/
+**/logs/
+spring.log
+
+# === OS / tooling noise ===
+.DS_Store
+Thumbs.db
+
+# === Environment / secrets ===
+.env
+.env.*
+!.env.example
+
+# === Docker local state (keep docker-compose.yml tracked) ===
+**/docker-data/
+**/volumes/
+/.idea/
