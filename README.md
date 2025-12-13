@@ -1,7 +1,4 @@
-# Axon Kafka Demo
-
-Event-driven microservices demo using Axon Framework with Kafka and PostgreSQL.
-
+# Event-Sourced Microservices with Axon's ES Domain-Driven Design Domain Model and Kafka as Event Bus
 ## Prerequisites
 
 - Java 21
