@@ -18,12 +18,6 @@ The system is built around two independent bounded contexts:
 - **Kafka** — Event streaming between services
 - **PostgreSQL** — Two databases: one for orders (port 5434), one for customers (port 5433)
 
-## Prerequisites
-
-- **Java 21**
-- **Docker** + **Docker Compose**
-- **Maven** (bundled via `mvnw`)
-
 ---
 
 ## Quick Start
