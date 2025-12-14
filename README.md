@@ -1,4 +1,4 @@
-# Axon Kafka — Orders & Customers Demo
+# Event-Sourced DDD with Axon and Kafka — Orders & Customers Demo
 
 A multi-service event-driven architecture using Event-Sourced DDD Aggregates from the **Axon Framework** with **Kafka** for inter-service event-based communication and **PostgreSQL** for Axon Event Store and Read Model Projections.
 
