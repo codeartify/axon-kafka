@@ -21,7 +21,7 @@ class CustomerController(
     fun registerCustomer(@RequestBody request: RegisterCustomerRequest): ResponseEntity<CustomerResponse> {
         val customerId = UUID.randomUUID().toString()
 
-        val subscriptionQuery: SubscriptionQueryResult<CustomerResponse?, CustomerResponse> = queryGateway.subscriptionQuery(
+        val subscriptionQuery = queryGateway.subscriptionQuery(
             GetCustomerQuery(customerId),
             ResponseTypes.instanceOf(CustomerResponse::class.java),
             ResponseTypes.instanceOf(CustomerResponse::class.java)
