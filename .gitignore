@@ -1,6 +1,5 @@
 # === IntelliJ IDEA ===
 .idea/
-/.idea/
 *.iml
 *.ipr
 *.iws
@@ -48,8 +47,6 @@ Thumbs.db
 .env.*
 !.env.example
 
-# === Docker local state (keep docker-compose.yml tracked) ===
+# === Docker local state ===
 **/docker-data/
 **/volumes/
-/.idea/
-/.idea/
