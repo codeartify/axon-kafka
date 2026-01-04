@@ -19,7 +19,7 @@ axon:
     enabled: false   # no Axon Server
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 192.168.1.25:9092
     client-id: order-service
     default-topic: axon.events
 
